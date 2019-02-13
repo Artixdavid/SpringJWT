@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<head th:replace="layout/layout :: header"></head>
+
+<div class="container">
+
+	<div class="card text-center">
+		<div class="card-header">403</div>
+		<div class="card-body">
+			<h5 class="card-title">Permiso Denegado</h5>
+			<p class="card-text">
+				Lo sentimos  <span sec:authentication="name"></span> no tienes permiso para esta accion.
+			</p>
+			<a th:href="@{/}" class="btn btn-primary">Ir a la pag de inicio</a>
+		</div>
+		<div class="card-footer text-muted">=(</div>
+	</div>
+
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

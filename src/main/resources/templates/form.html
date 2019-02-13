@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+		<br>
+		<div class="row">
+			<div class="col-sm-12" th:object="${cliente}" th:remove="tag">
+				<ul th:if="${#fields.hasErrors('*')}" class="alert-danger"
+					role="alert">
+					<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+				</ul>
+			</div>
+
+			<div class="col-sm-12">
+				<form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Nombre"
+							aria-label="Nombre" aria-describedby="basic-addon1"
+							th:errorclass="'form-control alert-danger'" th:field="*{nombre}"/>
+						<small class="form-text text-danger "
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Apellido"
+							aria-label="apellido" aria-describedby="basic-addon1"
+							th:field="*{apellido}"> <small
+							class="form-text text-danger "
+							th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+					</div>
+
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="E-mail"
+							aria-label="e-mail" aria-describedby="basic-addon1"
+							th:field="*{email}"> <small
+							class="form-text text-danger "
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+					</div>
+
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Fecha"
+							aria-label="e-mail" aria-describedby="basic-addon1"
+							th:field="*{createAt}"> <small
+							class="form-text text-danger "
+							th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
+					</div>
+					
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" name="file"> 
+					</div>
+
+					<input type="hidden" class="form-control" placeholder="Apellido"
+						aria-label="apellido" aria-describedby="basic-addon1"
+						th:field="*{id}">
+					<input type="submit" class="btn btn-primary" th:value="${textoBoton}" />
+					<a class="btn btn-secondary btn-xs" th:href="@{/listar}" th:text="'Cancelar'"></a>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"> </footer>
+</body>
+</html>
